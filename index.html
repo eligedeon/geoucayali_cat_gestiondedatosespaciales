@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeoUcayali | Gestión de Datos Espaciales</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">GESTIÓN DEL TERRITORIO</span>
+        <h1>Gestión de Datos Espaciales</h1>
+        <p>Catálogo de recursos técnicos, normativos y de interoperabilidad que orientan la producción, organización e intercambio de información geoespacial en Ucayali.</p>
+      </div>
+      <div class="stats">
+        <article class="stat-card"><strong>3</strong><span>Catálogos geográficos</span></article>
+        <article class="stat-card"><strong>1</strong><span>Protocolo de interoperabilidad</span></article>
+        <article class="stat-card"><strong>2</strong><span>Instrumentos normativos</span></article>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar por título, categoría o palabra clave..." /></label>
+      <div id="filters" class="filter-chips">
+        <button class="chip active" data-filter="Todos">Todos</button>
+        <button class="chip" data-filter="Catálogos">Catálogos</button>
+        <button class="chip" data-filter="Interoperabilidad">Interoperabilidad</button>
+        <button class="chip" data-filter="Normativa">Normativa</button>
+      </div>
+    </section>
+
+    <section class="catalog-layout">
+      <aside class="catalog-list-panel">
+        <div class="panel-heading"><div><span class="panel-kicker">RECURSOS DISPONIBLES</span><h2>Catálogo documental</h2></div><span id="resultCount" class="result-count">6</span></div>
+        <div id="documentList" class="document-list"></div>
+      </aside>
+      <section class="detail-panel">
+        <div class="detail-grid">
+          <div class="preview-wrap">
+            <div id="coverPreview" class="cover-preview"></div>
+            <div class="preview-footer"><span id="previewType"></span><button id="previewButton" class="text-button">Vista previa</button></div>
+          </div>
+          <article class="document-detail">
+            <div class="detail-topline"><span id="detailCategory" class="category-pill"></span><span id="detailYear" class="year-badge"></span></div>
+            <h2 id="detailTitle"></h2>
+            <p id="detailDescription" class="detail-description"></p>
+            <div id="detailTags" class="tag-row"></div>
+            <dl class="metadata-grid">
+              <div><dt>Institución</dt><dd id="detailInstitution"></dd></div>
+              <div><dt>Tipo</dt><dd id="detailType"></dd></div>
+              <div><dt>Ámbito</dt><dd id="detailScope"></dd></div>
+              <div><dt>Referencia</dt><dd id="detailReference"></dd></div>
+            </dl>
+            <div class="actions-row">
+              <button id="openViewer" class="primary-button">Consultar documento →</button>
+              <a id="sourceLink" class="secondary-button" href="#" target="_blank" rel="noopener">Fuente original</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="viewerModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div id="bookModalCard" class="book-modal-card">
+      <div class="book-header">
+        <div><span id="viewerCategory" class="panel-kicker"></span><h2 id="viewerTitle"></h2></div>
+        <div class="book-tools">
+          <button id="zoomOut" class="tool-button" title="Alejar">−</button>
+          <span id="zoomLabel">100%</span>
+          <button id="zoomIn" class="tool-button" title="Acercar">+</button>
+          <button id="fullscreenBtn" class="tool-button wide" title="Pantalla completa">⛶</button>
+          <button class="icon-button" data-close-modal aria-label="Cerrar">×</button>
+        </div>
+      </div>
+
+      <div class="book-stage" id="bookStage">
+        <button id="prevPage" class="book-nav left" aria-label="Páginas anteriores">‹</button>
+        <div class="book-viewport">
+          <div class="book" id="book">
+            <div class="book-spine"></div>
+            <section class="paper left-page" id="leftPage"><div class="blank-page"></div></section>
+            <section class="paper right-page" id="rightPage"><div class="blank-page"></div></section>
+            <div id="turningPage" class="turning-page"></div>
+          </div>
+        </div>
+        <button id="nextPage" class="book-nav right" aria-label="Páginas siguientes">›</button>
+      </div>
+
+      <div class="book-footer">
+        <div class="page-jump">
+          <span id="pageIndicator">Portada</span>
+          <label>Ir a página <input id="pageInput" type="number" min="1" value="1" /></label>
+          <button id="goPage" class="small-button">Ir</button>
+        </div>
+        <div class="book-footer-actions">
+          <span class="hint">También puedes usar ← → para pasar las hojas</span>
+          <a id="modalSourceLink" href="#" target="_blank" rel="noopener">Abrir PDF original ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
